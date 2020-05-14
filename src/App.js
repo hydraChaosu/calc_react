@@ -238,20 +238,35 @@ function App() {
 
   const sqrt = () => {
     if (Number(view) < 0) setView("Cant sqrt from negative numbers");
+    if (operator !== null) {
+      doOperation(repeatVal);
+    }
     setEqual(false);
     setSpecial(true);
+    setPrevOperation(null);
+    setOperationStarted(true);
     setView(`${Math.sqrt(Number(view))}`);
   };
 
   const power = () => {
+    if (operator !== null) {
+      doOperation(repeatVal);
+    }
     setEqual(false);
     setSpecial(true);
+    setPrevOperation(null);
+    setOperationStarted(true);
     setView(`${Number(view) ** 2}`);
   };
 
   const oneDiv = () => {
+    if (operator !== null) {
+      doOperation(repeatVal);
+    }
     setEqual(false);
     setSpecial(true);
+    setPrevOperation(null);
+    setOperationStarted(true);
     setView(`${1 / Number(view)}`);
   };
 
@@ -264,7 +279,13 @@ function App() {
     <Calculator>
       <View>{view}</View>
       <MemoryButtons>
-        <Button value="MR" onClick={() => setView(memory.toString())}>
+        <Button
+          value="MR"
+          onClick={() => {
+            setRepeatVal(memory.toString());
+            setView(memory.toString());
+          }}
+        >
           MR
         </Button>
         <Button value="MC" onClick={() => setMemory(0)}>
