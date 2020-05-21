@@ -45,7 +45,6 @@ function App() {
     } else if (operator) {
       doOperation();
       setRepeatVal(view);
-
       setPrevOperation(operator);
     }
     setOperationStarted(true);
@@ -90,7 +89,17 @@ function App() {
       setOperator("+");
       return;
     }
-    if (operator !== "+" && prevOperation !== operator && operator !== null) {
+    checkDoOperation("+");
+    setOperationStarted(true);
+    setOperator("+");
+  };
+
+  const checkDoOperation = (operation) => {
+    if (
+      operator !== operation &&
+      prevOperation !== operator &&
+      operator !== null
+    ) {
       doOperation();
     } else if (
       prevOperation === operator &&
@@ -101,8 +110,6 @@ function App() {
       doOperation();
       setPrevOperation(operator);
     }
-    setOperationStarted(true);
-    setOperator("+");
   };
 
   const multiplication = () => {
@@ -121,7 +128,6 @@ function App() {
     } else if (operator) {
       doOperation();
       setRepeatVal(view);
-
       setPrevOperation(operator);
     }
     setOperationStarted(true);
@@ -142,17 +148,7 @@ function App() {
       return;
     }
 
-    if (operator !== "-" && prevOperation !== operator && operator !== null) {
-      doOperation();
-    } else if (
-      prevOperation === operator &&
-      operator !== null &&
-      prevOperation !== null
-    ) {
-    } else if (operator) {
-      doOperation();
-      setPrevOperation(operator);
-    }
+    checkDoOperation("-");
     setOperationStarted(true);
     setOperator("-");
   };
