@@ -20,24 +20,12 @@ function App() {
   const [repeatVal, setRepeatVal] = useState(0);
 
   const operators = {
-    "+": function (a, b) {
-      return a + b;
-    },
-    "-": function (a, b) {
-      return a - b;
-    },
-    "*": function (a, b) {
-      return a * b;
-    },
-    "/": function (a, b) {
-      return a / b;
-    },
-    "%": function (a, b) {
-      return (a * b) / 100;
-    },
-    "=": function (a, b) {
-      return b;
-    },
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
+    "%": (a, b) => (a * b) / 10,
+    "=": (a, b) => b,
   };
 
   const divide = () => {
@@ -65,16 +53,12 @@ function App() {
   };
 
   const result = () => {
-    // if (!equal) {
-    //   setRepeatVal(view);
-    // }
     if (operator && operator !== null) {
       console.log("result");
       doOperation(repeatVal);
     }
     setOperationStarted(true);
     setEqual(true);
-    // setOperator();
   };
 
   const percent = () => {
@@ -151,11 +135,13 @@ function App() {
       setOperator("-");
       return;
     }
+
     if (equal) {
       setOperationStarted(true);
       setOperator("-");
       return;
     }
+
     if (operator !== "-" && prevOperation !== operator && operator !== null) {
       doOperation();
     } else if (
@@ -172,7 +158,7 @@ function App() {
   };
 
   const doOperation = (repeat) => {
-    if ((view == 0 || repeat == 0) && operator === "/") {
+    if ((Number(view) === 0 || Number(repeat) === 0) && operator === "/") {
       setView("Nie dziel przez zero");
       return;
     }
@@ -310,38 +296,38 @@ function App() {
         <Button onClick={power}>power</Button>
         <Button onClick={sqrt}>sqrt</Button>
         <Button onClick={divide}>/</Button>
-        <Button value={"7"} onClick={updateNumber}>
+        <Button value="7" onClick={updateNumber}>
           7
         </Button>
-        <Button value={"8"} onClick={updateNumber}>
+        <Button value="8" onClick={updateNumber}>
           8
         </Button>
-        <Button value={"9"} onClick={updateNumber}>
+        <Button value="9" onClick={updateNumber}>
           9
         </Button>
         <Button onClick={multiplication}>*</Button>
-        <Button value={"4"} onClick={updateNumber}>
+        <Button value="4" onClick={updateNumber}>
           4
         </Button>
-        <Button value={"5"} onClick={updateNumber}>
+        <Button value="5" onClick={updateNumber}>
           5
         </Button>
-        <Button value={"6"} onClick={updateNumber}>
+        <Button value="6" onClick={updateNumber}>
           6
         </Button>
         <Button onClick={subtraction}>-</Button>
-        <Button value={"1"} onClick={updateNumber}>
+        <Button value="1" onClick={updateNumber}>
           1
         </Button>
-        <Button value={"2"} onClick={updateNumber}>
+        <Button value="2" onClick={updateNumber}>
           2
         </Button>
-        <Button value={"3"} onClick={updateNumber}>
+        <Button value="3" onClick={updateNumber}>
           3
         </Button>
         <Button onClick={addition}>+</Button>
         <Button onClick={changesign}>+/-</Button>
-        <Button value={"0"} onClick={updateNumber}>
+        <Button value="0" onClick={updateNumber}>
           0
         </Button>
 
